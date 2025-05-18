@@ -3,12 +3,12 @@
 import json
 import itertools
 
-from markdown_it import MarkdownIt
 from bs4 import BeautifulSoup
-from fastapi import APIRouter, Header
+from markdown_it import MarkdownIt
+from fastapi import APIRouter
 from pydantic import BaseModel
 
-from app.skill import SkillInput, SkillInputRecord, SkillIssue, SkillOutput, SkillOutputRecord
+from app.skill import AISearchSkillInput, AISearchSkillInputRecord, AISearchSkillIssue, AISearchSkillOutput, AISearchSkillOutputRecord
 
 __all__ = ("router",)
 
@@ -21,7 +21,7 @@ class TableConverterInput(BaseModel):
     text: str | None
 
 
-class TableConverterInputRecord(SkillInputRecord[TableConverterInput]):
+class TableConverterInputRecord(AISearchSkillInputRecord[TableConverterInput]):
     """Individual input record for the table converter model."""
 
 
@@ -31,15 +31,15 @@ class TableConverterOutput(BaseModel):
     text: str | None
 
 
-class TableConverterOutputRecord(SkillOutputRecord[TableConverterOutput]):
+class TableConverterOutputRecord(AISearchSkillOutputRecord[TableConverterOutput]):
     """Individual output record from the table converter model."""
 
 
-class TableConverterInput(SkillInput[TableConverterInputRecord]):
+class TableConverterInput(AISearchSkillInput[TableConverterInputRecord]):
     """Input for the table converter skill."""
 
 
-class TableConverterSkillOutput(SkillOutput[TableConverterOutputRecord]):
+class TableConverterSkillOutput(AISearchSkillOutput[TableConverterOutputRecord]):
     """Output for the table converter skill."""
 
 
@@ -72,7 +72,7 @@ async def convert(body: TableConverterInput) -> TableConverterSkillOutput:
                     TableConverterOutputRecord(
                         record_id=input_data.record_id,
                         data=TableConverterOutput(text=None),
-                        warnings=(SkillIssue(message="No input text provided."),),
+                        warnings=(AISearchSkillIssue(message="No input text provided."),),
                     )
                     for input_data in inputs_without_text
                 ),
