@@ -1,7 +1,6 @@
 """Types for AI Search custom skills interface: https://learn.microsoft.com/en-us/azure/search/cognitive-search-custom-skill-interface."""
 
-from typing import Generic, TypeVar
-
+from typing import Any, Dict, List
 from pydantic import BaseModel, Field
 
 __all__ = (
@@ -12,45 +11,52 @@ __all__ = (
     "AISearchSkillOutputRecord",
 )
 
-InputData = TypeVar("InputData", bound=BaseModel)
-OutputData = TypeVar("OutputData", bound=BaseModel)
-
-
 class AISearchSkillIssue(BaseModel):
     """A warning or error message from the skill."""
 
     message: str
 
 
-class AISearchSkillInputRecord(BaseModel, Generic[InputData]):
-    """Individual skill input item."""
+class TableConverterInput(BaseModel):
+    """Input data for the table converter model."""
+
+    text: str | None
+
+class AISearchSkillInputRecord(BaseModel):
+    """Skill input item."""
 
     record_id: str = Field(validation_alias="recordId")
-    data: InputData
+    data: TableConverterInput = Field(default_factory=lambda: TableConverterInput(text=None))
 
+class TableConverterInputRecord(AISearchSkillInputRecord):
+    """Individual input record for the table converter model."""
 
-InputRecord = TypeVar("InputRecord", bound=AISearchSkillInputRecord)
-
-
-class AISearchSkillInput(BaseModel, Generic[InputRecord]):
+class AISearchSkillInput(BaseModel):
     """Skill input data."""
 
-    values: tuple[InputRecord, ...]
+    values: List[AISearchSkillInputRecord] = []
 
 
-class AISearchSkillOutputRecord(BaseModel, Generic[OutputData]):
-    """Individual skill output item."""
+class TableConverterOutput(BaseModel):
+    """Output data from the table converter model."""
+
+    text: str | None
+
+class AISearchSkillOutputRecord(BaseModel):
+    """Skill output item."""
 
     record_id: str = Field(serialization_alias="recordId")
-    data: OutputData
-    errors: tuple[AISearchSkillIssue, ...] = Field(default_factory=tuple)
-    warnings: tuple[AISearchSkillIssue, ...] = Field(default_factory=tuple)
+    data: TableConverterOutput = Field(default_factory=lambda: TableConverterOutput(text=None))
+    errors: List[AISearchSkillIssue] = Field(default_factory=list)
+    warnings: List[AISearchSkillIssue] = Field(default_factory=list)
 
+class TableConverterOutputRecord(AISearchSkillOutputRecord):
+    """Individual output record from the table converter model."""
 
-OutputRecord = TypeVar("OutputRecord", bound=AISearchSkillOutputRecord)
-
-
-class AISearchSkillOutput(BaseModel, Generic[OutputRecord]):
+class AISearchSkillOutput(BaseModel):
     """Skill output data."""
 
-    values: tuple[OutputRecord, ...]
+    values: List[AISearchSkillOutputRecord] = []
+
+class TableConverterSkillOutput(AISearchSkillOutput):
+    """Output for the table converter skill."""

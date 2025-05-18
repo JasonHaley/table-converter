@@ -6,48 +6,15 @@ import itertools
 from bs4 import BeautifulSoup
 from markdown_it import MarkdownIt
 from fastapi import APIRouter
-from pydantic import BaseModel
 
-from app.skill import AISearchSkillInput, AISearchSkillInputRecord, AISearchSkillIssue, AISearchSkillOutput, AISearchSkillOutputRecord
+from app.skill import AISearchSkillIssue, AISearchSkillInput, TableConverterSkillOutput, TableConverterOutputRecord, TableConverterOutput
 
 __all__ = ("router",)
 
-SKILL_TIMEOUT = 230  # max timeout for a custom skill
-
-
-class TableConverterInput(BaseModel):
-    """Input data for the table converter model."""
-
-    text: str | None
-
-
-class TableConverterInputRecord(AISearchSkillInputRecord[TableConverterInput]):
-    """Individual input record for the table converter model."""
-
-
-class TableConverterOutput(BaseModel):
-    """Output data from the table converter model."""
-
-    text: str | None
-
-
-class TableConverterOutputRecord(AISearchSkillOutputRecord[TableConverterOutput]):
-    """Individual output record from the table converter model."""
-
-
-class TableConverterInput(AISearchSkillInput[TableConverterInputRecord]):
-    """Input for the table converter skill."""
-
-
-class TableConverterSkillOutput(AISearchSkillOutput[TableConverterOutputRecord]):
-    """Output for the table converter skill."""
-
-
 router = APIRouter()
 
-
 @router.post("/convert")
-async def convert(body: TableConverterInput) -> TableConverterSkillOutput:
+async def convert(body: AISearchSkillInput) -> TableConverterSkillOutput:
     """Convert tables to JSON."""
     
     inputs_without_text = tuple(input_data for input_data in body.values if not input_data.data.text)
