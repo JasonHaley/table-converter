@@ -112,7 +112,7 @@ def parse_html_table(table):
 
 
 def markdown_tables_to_json_and_replace(md_text: str) -> str:
-    trimmed_md_text = md_text.replace('\r\n', '').replace('\n', '')
+    trimmed_md_text = md_text.replace('\r\n', ' ').replace('\n', ' ')
     md = MarkdownIt().enable('table')
     html = md.render(trimmed_md_text)
     soup = BeautifulSoup(html, "html.parser")
