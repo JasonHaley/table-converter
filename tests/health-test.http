@@ -1,0 +1,8 @@
+@localHostBaseUrl = http://localhost:7071
+
+// healthcheck endpoint
+GET {{localHostBaseUrl}}/healthz
+
+{
+    
+}

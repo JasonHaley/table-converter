@@ -1,0 +1,8 @@
+@azureHostBaseUrl = https://<func site>.azurewebsites.net
+
+// healthcheck endpoint
+GET {{azureHostBaseUrl}}/healthz?code=<app key>
+
+{
+    
+}

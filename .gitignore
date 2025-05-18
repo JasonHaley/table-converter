@@ -1,0 +1,65 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Poetry virtual environment (local)
+.venv/
+
+# Poetry lock file (optional to ignore, but usually committed)
+# poetry.lock
+
+# Virtual environment (if not using .venv)
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# VS Code settings (optional, for VS Code users)
+
+# macOS files
+.DS_Store
+
+# Python-related cache
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# pyright
+typings/
+
+# __init__.pyc artifacts
+*.egg-info/
+dist/
+build/
+
+local.settings.json
+local.settings.json.old
+.python_packages
