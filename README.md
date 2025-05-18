@@ -27,7 +27,7 @@ Content-Type: application/json
     {
       "recordId": "0",
       "data": {
-        "text": "Here is a table: | A | B |\n|---|---|\n| 1 | 2 |"
+        "text": "Here is a table: <table>\n<tr>\n<th>ZIP Code</th>\n<th>USPS ZIP Code Name</th>\n<th>Territory</th>\n</tr>\n<tr>\n<td>98001</td>\n<td>Auburn</td>\n<td>1</td>\n</table>"
       }
     }
   ]
@@ -42,7 +42,7 @@ Content-Type: application/json
     {
       "recordId": "0",
       "data": {
-        "text": "Here is a table:\n```json\n[{\"A\":\"1\",\"B\":\"2\"}]\n```\n"
+        "text": "Here is a table: \n```json\n[  {    \"ZIP Code\": \"98001\",    \"USPS ZIP Code Name\": \"Auburn\",    \"Territory\": \"1\"  }]\n```\n"
       },
       "errors": [],
       "warnings": []

@@ -10,7 +10,7 @@ x-functions-key: <app key>
         {
             "recordId": "0",
             "data": {
-                "text": "The is a test<table>\n<tr>\n<th>ZIP Code</th>\n<th>USPS ZIP Code Name</th>\n<th>Territory</th>\n<th>ZIP Code</th>\n<th>USPS ZIP Code Name</th>\n<th>Territory</th>\n</tr>\n<tr>\n<td>98001</td>\n<td>Auburn</td>\n<td>51</td>\n<td>98057</td>\n<td>Renton</td>\n<td>51</td>\n</tr>\n<tr>\n<td>98002</td>\n<td>Auburn</td>\n<td>51</td>\n<td>98058</td>\n<td>Renton</td>\n<td>51</td>\n</tr>\n<tr>\n<td>98003</td>\n<td>Federal Way</td>\n<td>51</td>\n<td>98059</td>\n<td>Renton</td>\n<td>51</td>\n</tr>\n</table>"
+                "text": "Here is a table: <table>\n<tr>\n<th>ZIP Code</th>\n<th>USPS ZIP Code Name</th>\n<th>Territory</th>\n</tr>\n<tr>\n<td>98001</td>\n<td>Auburn</td>\n<td>1</td>\n</tr>\n</table>"
             }
         }
     ]
