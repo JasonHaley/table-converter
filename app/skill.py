@@ -9,6 +9,11 @@ __all__ = (
     "AISearchSkillIssue",
     "AISearchSkillOutput",
     "AISearchSkillOutputRecord",
+    "TableConverterInput",
+    "TableConverterInputRecord",
+    "TableConverterOutput",
+    "TableConverterOutputRecord",
+    "TableConverterSkillOutput",
 )
 
 class AISearchSkillIssue(BaseModel):
