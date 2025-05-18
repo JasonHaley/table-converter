@@ -1,4 +1,4 @@
-"""Routes for the embeddings skill."""
+"""Routes for the table converter skill."""
 
 import json
 import itertools
@@ -16,31 +16,31 @@ SKILL_TIMEOUT = 230  # max timeout for a custom skill
 
 
 class TableConverterInput(BaseModel):
-    """Input data for the embeddings model."""
+    """Input data for the table converter model."""
 
     text: str | None
 
 
 class TableConverterInputRecord(SkillInputRecord[TableConverterInput]):
-    """Individual input record for the embeddings model."""
+    """Individual input record for the table converter model."""
 
 
 class TableConverterOutput(BaseModel):
-    """Output data from the embeddings model."""
+    """Output data from the table converter model."""
 
     text: str | None
 
 
 class TableConverterOutputRecord(SkillOutputRecord[TableConverterOutput]):
-    """Individual output record from the embeddings model."""
+    """Individual output record from the table converter model."""
 
 
 class TableConverterInput(SkillInput[TableConverterInputRecord]):
-    """Input for the embeddings skill."""
+    """Input for the table converter skill."""
 
 
 class TableConverterSkillOutput(SkillOutput[TableConverterOutputRecord]):
-    """Output for the embeddings skill."""
+    """Output for the table converter skill."""
 
 
 router = APIRouter()
@@ -140,9 +140,6 @@ def parse_html_table(table):
                 row[header] = cell
     
         body_rows.append(row)
-
-        #row = list(zip(flat_headers, cells))
-        #body_rows.append(row)
 
     return body_rows
 
